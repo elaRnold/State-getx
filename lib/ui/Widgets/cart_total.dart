@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CartTotal extends StatelessWidget {
-  const CartTotal({Key? key}) : super(key: key);
+  CartTotal({Key? key}) : super(key: key);
+  var contador = 0;
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return Expanded(
       child: Center(
-        child: Text('Total: 400 usd',
-            style: TextStyle(
+        child: Text('Total: $contador usd',
+            style: const TextStyle(
                 fontSize: 25.0,
                 color: Colors.blueGrey,
                 letterSpacing: 2.0,

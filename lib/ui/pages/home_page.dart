@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
       const SizedBox(
         height: 60,
       ),
-      const Text("Brad Wilson",
+      const Text("Arnaldo Benavides",
           style: TextStyle(
               fontSize: 25.0,
               color: Colors.blueGrey,
@@ -28,14 +28,14 @@ class HomePage extends StatelessWidget {
         height: 20,
       ),
       const Text(
-        "Kilcoole, Waterford",
+        "Barranquilla, Colombia",
         style: TextStyle(
             fontSize: 18.0,
             color: Colors.black45,
             letterSpacing: 2.0,
             fontWeight: FontWeight.w300),
       ),
-      const CartTotal()
+      CartTotal()
     ]));
   }
 
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
         CustomBanner(200),
         CircleAvatar(
           backgroundImage:
-              NetworkImage("https://randomuser.me/api/portraits/men/75.jpg"),
+              NetworkImage("https://randomuser.me/api/portraits/men/42.jpg"),
           radius: 60.0,
         )
       ],
@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
-            onTap: () => Get.to(() => ProductList(),
+            onTap: () => Get.to(() => const ProductList(),
                 transition: Transition.circularReveal,
                 duration: const Duration(seconds: 1)),
             child: const Icon(

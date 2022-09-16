@@ -5,7 +5,7 @@ import '../../domain/product.dart';
 import '../Widgets/banner.dart';
 
 class ProductList extends StatefulWidget {
-  ProductList({Key? key}) : super(key: key);
+  const ProductList({Key? key}) : super(key: key);
 
   @override
   State<ProductList> createState() => _ProductListState();
@@ -13,13 +13,18 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
   int counter = 0;
-
   List<Product> entries = <Product>[];
 
   @override
   void initState() {
-    entries.add(Product(0, "Toy car", 10));
-    entries.add(Product(1, "Toy house", 20));
+    entries.add(Product(0, "Banana", 10));
+    entries.add(Product(1, "Manzana", 20));
+    entries.add(Product(2, "Pera", 5));
+    entries.add(Product(3, "Repollo", 15));
+    entries.add(Product(4, "Pollo", 10));
+    entries.add(Product(5, "Zanahoria", 8));
+    entries.add(Product(6, "Lechuga", 10));
+    entries.add(Product(7, "Papa", 15));
     super.initState();
   }
 
@@ -30,7 +35,7 @@ class _ProductListState extends State<ProductList> {
         child: Column(
           children: [
             Stack(
-              children: [CustomBanner(50), customAppBar()],
+              children: [const CustomBanner(50), customAppBar()],
             ),
             Expanded(
               child: ListView.builder(
@@ -76,14 +81,18 @@ class _ProductListState extends State<ProductList> {
         Text(product.price.toString()),
         Column(
           children: [
-            IconButton(onPressed: null, icon: Icon(Icons.arrow_upward)),
-            IconButton(onPressed: null, icon: Icon(Icons.arrow_downward))
+            IconButton(
+                onPressed: () => {product.quantity += 1},
+                icon: const Icon(Icons.arrow_upward)),
+            IconButton(
+                onPressed: () => {product.quantity -= 1},
+                icon: const Icon(Icons.arrow_downward))
           ],
         ),
         Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text("Quantity"),
             ),
             Padding(
