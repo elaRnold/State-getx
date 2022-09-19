@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import '../../domain/product.dart';
 import '../Widgets/banner.dart';
 
-
-class Controller extends GetxController{
+class Controller extends GetxController {
   var entries = <Product>[].obs;
 
   @override
-  void onInit(){
+  void onInit() {
     entries.add(Product(0, "Banana", 10));
     entries.add(Product(1, "Manzana", 20));
     entries.add(Product(2, "Pera", 5));
@@ -21,10 +20,18 @@ class Controller extends GetxController{
     super.onInit();
   }
 
-  updatecantidad(int indice) => entries[indice].quantity++;
-  downdatecantidad(int indice) => (entries[indice].quantity == 0) ? entries[indice].quantity = 0 : entries[indice].quantity--;
-}
+  updatecantidad(int indice) {
+    entries[indice].quantity++;
+    entries.refresh();
+  }
 
+  downdatecantidad(int indice) {
+    if (!(entries[indice].quantity == 0)) {
+      entries[indice].quantity--;
+      entries.refresh();
+    }
+  }
+}
 
 class ProductList extends StatelessWidget {
   const ProductList({Key? key}) : super(key: key);
@@ -35,7 +42,7 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     final Controller c = Get.put(Controller());
-    
+
     return Scaffold(
       backgroundColor: Colors.teal,
       body: SafeArea(
@@ -45,24 +52,27 @@ class ProductList extends StatelessWidget {
               children: [const CustomBanner(50), customAppBar()],
             ),
             Expanded(
-              child: GetX<Controller>(
-                builder: (controller) {
-                  return ListView.builder(
-                      padding: const EdgeInsets.all(8),
-                      itemCount: controller.entries.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                            margin: const EdgeInsets.all(4.0),
-                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              child: GetX<Controller>(builder: (controller) {
+                return ListView.builder(
+                    padding: const EdgeInsets.all(8),
+                    itemCount: controller.entries.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        margin: const EdgeInsets.all(4.0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
                               Text(controller.entries[index].name),
                               Text(controller.entries[index].price.toString()),
                               Column(
                                 children: [
                                   IconButton(
-                                      onPressed: () => {controller.updatecantidad(index)},
+                                      onPressed: () =>
+                                          {controller.updatecantidad(index)},
                                       icon: const Icon(Icons.arrow_upward)),
                                   IconButton(
-                                      onPressed: () => {controller.downdatecantidad(index)},
+                                      onPressed: () =>
+                                          {controller.downdatecantidad(index)},
                                       icon: const Icon(Icons.arrow_downward))
                                 ],
                               ),
@@ -73,16 +83,16 @@ class ProductList extends StatelessWidget {
                                     child: Text("Quantity"),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Obx(() => Text(controller.entries[index].quantity.toString()))
-                                  ),
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Obx(() => Text(controller
+                                          .entries[index].quantity
+                                          .toString()))),
                                 ],
                               )
                             ]),
-                          );
-                      });
-                }
-              ),
+                      );
+                    });
+              }),
             ),
           ],
         ),
