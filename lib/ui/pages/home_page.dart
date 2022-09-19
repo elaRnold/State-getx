@@ -1,7 +1,6 @@
 import 'package:f_shopping_app/ui/pages/product_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../Widgets/banner.dart';
 import '../Widgets/cart_total.dart';
 
@@ -10,33 +9,37 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return SafeArea(
-        child: Column(children: [
-      Stack(
-        children: [buildProfileImage(), customAppBar()],
-      ),
-      const SizedBox(
-        height: 60,
-      ),
-      const Text("Arnaldo Benavides",
-          style: TextStyle(
-              fontSize: 25.0,
-              color: Colors.blueGrey,
+      child: Column(
+        children: [
+          Stack(
+            children: [buildProfileImage(), customAppBar()],
+          ),
+          const SizedBox(
+            height: 60,
+          ),
+          const Text("Arnaldo Benavides",
+            style: TextStyle(
+                fontSize: 30.0,
+                color: Color.fromARGB(255, 255, 255, 255),
+                letterSpacing: 2.0,
+                fontWeight: FontWeight.w400)),
+          const SizedBox(
+            height: 20,
+          ),
+          const Text(
+            "Barranquilla, Colombia",
+            style: TextStyle(
+              fontSize: 18.0,
+              color: Color.fromARGB(255, 255, 255, 255),
               letterSpacing: 2.0,
-              fontWeight: FontWeight.w400)),
-      const SizedBox(
-        height: 20,
-      ),
-      const Text(
-        "Barranquilla, Colombia",
-        style: TextStyle(
-            fontSize: 18.0,
-            color: Colors.black45,
-            letterSpacing: 2.0,
-            fontWeight: FontWeight.w300),
-      ),
-      CartTotal()
-    ]));
+              fontWeight: FontWeight.w300),
+          ),
+          CartTotal()
+        ]
+      )
+    );
   }
 
   Widget buildProfileImage() {
@@ -60,7 +63,7 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
-            onTap: () => Get.to(() => ProductList(),
+            onTap: () => Get.to(() => const ProductList(),
                 transition: Transition.circularReveal,
                 duration: const Duration(seconds: 1)),
             child: const Icon(

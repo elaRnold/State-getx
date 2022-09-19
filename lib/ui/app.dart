@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Shopping cart',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.teal
       ),
       home: const Scaffold(
         body: HomePage(),

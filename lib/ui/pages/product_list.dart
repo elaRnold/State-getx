@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../domain/product.dart';
 import '../Widgets/banner.dart';
 
@@ -9,16 +8,18 @@ class Controller extends GetxController {
 
   @override
   void onInit() {
-    entries.add(Product(0, "Banana", 10));
+    entries.add(Product(0, "Banana   ", 10));
     entries.add(Product(1, "Manzana", 20));
-    entries.add(Product(2, "Pera", 5));
+    entries.add(Product(2, "Pera        ", 5));
     entries.add(Product(3, "Repollo", 15));
-    entries.add(Product(4, "Pollo", 10));
-    entries.add(Product(5, "Zanahoria", 8));
+    entries.add(Product(4, "Pollo      ", 10));
+    entries.add(Product(5, "Pezcado", 8));
     entries.add(Product(6, "Lechuga", 10));
-    entries.add(Product(7, "Papa", 15));
+    entries.add(Product(7, "Papa        ", 15));
     super.onInit();
   }
+
+  double get totalprice => entries.fold(0, (sum, item) => sum + (item.price*item.quantity));
 
   updatecantidad(int indice) {
     entries[indice].quantity++;
@@ -36,8 +37,6 @@ class Controller extends GetxController {
 class ProductList extends StatelessWidget {
   const ProductList({Key? key}) : super(key: key);
 
-  // final controller = Get.put(Controller);
-
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -52,7 +51,8 @@ class ProductList extends StatelessWidget {
               children: [const CustomBanner(50), customAppBar()],
             ),
             Expanded(
-              child: GetX<Controller>(builder: (controller) {
+              child: GetX<Controller>(
+                builder: (controller) {
                 return ListView.builder(
                     padding: const EdgeInsets.all(8),
                     itemCount: controller.entries.length,
@@ -69,30 +69,33 @@ class ProductList extends StatelessWidget {
                                   IconButton(
                                       onPressed: () =>
                                           {controller.updatecantidad(index)},
-                                      icon: const Icon(Icons.arrow_upward)),
+                                          icon: const Icon(Icons.arrow_upward)),
                                   IconButton(
                                       onPressed: () =>
                                           {controller.downdatecantidad(index)},
-                                      icon: const Icon(Icons.arrow_downward))
+                                          icon: const Icon(Icons.arrow_downward))
                                 ],
                               ),
                               Column(
                                 children: [
                                   const Padding(
                                     padding: EdgeInsets.all(8.0),
-                                    child: Text("Quantity"),
+                                    child: Text("Cantidad"),
                                   ),
                                   Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Obx(() => Text(controller
                                           .entries[index].quantity
-                                          .toString()))),
+                                          .toString()))
+                                  ),
                                 ],
                               )
-                            ]),
+                            ]
+                          ),
                       );
-                    });
-              }),
+                    }
+                  );}
+              ),
             ),
           ],
         ),
