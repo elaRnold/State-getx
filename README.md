@@ -1,4 +1,4 @@
-# f_shopping_app
+shopping App
 
 https://user-images.githubusercontent.com/83561253/191110022-d51e6232-10cf-4d5f-a1ce-8c2d425e22a4.mp4
 
